@@ -31,3 +31,24 @@ button {
     margin: 10px;
 
 }
+button:hover {
+    box-shadow: 10px;
+    background-color: purple;
+}
+.quiz {
+    display: none;
+    text-align: center;
+    justify-content: space-around;
+    top: 200px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.quiz p {
+    font-size: 25px;
+    margin:10px;
+}
+.quiz ul {
+    font-size: 20px;
+}
