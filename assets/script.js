@@ -10,7 +10,8 @@ var ans2 = document.querySelector("#answer2")
 var ans3 = document.querySelector("#answer3")
 var ans4 = document.querySelector("#answer4")
 var QI = 0
-
+var playername = ""
+var score = 0
 
 var questions = [
     {
@@ -43,6 +44,7 @@ function setTimer() {
         clearInterval(timerInterval);
         window.alert("Game Over")
         body.style.display = "block";
+        savescore()
       }
   
     }, 1000);
@@ -71,9 +73,21 @@ function nextquestion(){
     QI++
     if (QI < questions.length) {
     populatequestions()
-    } else clearInterval(setTimer)
-}
+    } else {
+        clearInterval(setTimer)
+        localStorage.setItem("Score", timer)
+        savescore()
 
+    }
+}
+function savescore(){
+    playername = window.prompt("Input your name")
+    var Highscore = {
+        score: localStorage.getItem("Score"),
+        player: playername.trim(),
+      };
+   localStorage.setItem("Highscores", JSON.stringify(Highscore));
+}
   ans1.addEventListener("click", function() {
     playerchoice = ans1
     nextquestion()
