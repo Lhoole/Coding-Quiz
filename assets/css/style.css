@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.main {
+    display: block;
+    text-align: center;
+    justify-content: space-around;
+    top: 200px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+.main h1 {
+    font-size: 45px;
+    padding: 30px;
+}
+.main p {
+    font-size: 20px;
+    margin:10px;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+
+}
