@@ -33,7 +33,32 @@ var questions = [
         choices: ["The framework of the webpage", "The appearance of the webpage", "The display of the webpage",
                 "The logic of the webpage"],
         answer: "The logic of the webpage",
-   }
+   },
+   {
+    title: "Javascript needs what code to recieve input from the user:",
+    choices: ["An \"If\" statement", "An \"event listener\"", "A function",
+            "A variable"],
+    answer: "An \"event listener\"",
+  },
+  {
+    title: "Javascript feature with multiple variables stored within a variable is called:",
+    choices: ["An object", "An array", "String",
+            "A Suitcase"],
+    answer: "An object",
+  },
+  {
+    title: "In Javascript _____ is and example of a loop?",
+    choices: ["If", "Else", "Var",
+            "For"],
+    answer: "For",
+  },
+  {
+    title: "Why would you use a loop?",
+    choices: ["To define a variable", "To read an input", "To get stuck",
+            "To repeat a process"],
+    answer: "To repeat a process",
+  },
+
 ]
 
 function startGame(){
@@ -45,7 +70,7 @@ function startGame(){
 }
 
 function setTimer() {
-    timer = 30;
+    timer = 50;
       timerInterval = setInterval(function() {
       timer--;
       timerEl.textContent = "Time: " + timer;
