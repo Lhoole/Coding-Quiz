@@ -10,6 +10,7 @@ var ans2 = document.querySelector("#answer2")
 var ans3 = document.querySelector("#answer3")
 var ans4 = document.querySelector("#answer4")
 var QI = 0
+var timerInterval;
 var playername = ""
 var score = 0
 
@@ -24,31 +25,36 @@ var questions = [
         choices: ["Hypertext markup language", "High-tech machine language", "Hyper transfer mobile linking",
                   "Hired trained machine labor"],
         answer: "Hypertext markup language",
-    }
+    },
+    {
+        title: "Javascript is used for:",
+        choices: ["The framework of the webpage", "The appearance of the webpage", "The display of the webpage",
+                "The logic of the webpage"],
+        answer: "The logic of the webpage",
+   }
 ]
 
 function startGame(){
     setTimer()
+    QI = 0
     bodyTitle.style.display = "none";
     bodyQuiz.style.display = "block";
     playQuiz()
 }
 
 function setTimer() {
-    timer = 60;
-    var timerInterval = setInterval(function() {
+    timer = 30;
+      timerInterval = setInterval(function() {
       timer--;
       timerEl.textContent = "Time: " + timer;
   
       if(timer === 0) {
-        clearInterval(timerInterval);
-        window.alert("Game Over")
-        body.style.display = "block";
         savescore()
       }
   
     }, 1000);
   }
+
 function playQuiz() {
     populatequestions()
     
@@ -74,20 +80,28 @@ function nextquestion(){
     if (QI < questions.length) {
     populatequestions()
     } else {
-        clearInterval(setTimer)
-        localStorage.setItem("Score", timer)
         savescore()
-
     }
 }
+
 function savescore(){
+    var highscores = localStorage.getItem("Highscores")
+    if (highscores !== null) {
+    highscores = JSON.parse(localStorage.getItem("Highscores"))
+    } else { highscores = [];
+    }
+    bodyQuiz.style.display = "none";
+    bodyTitle.style.display = "block";
+    clearInterval(timerInterval)
     playername = window.prompt("Input your name")
-    var Highscore = {
-        score: localStorage.getItem("Score"),
+    var score = {
+        score: timer,
         player: playername.trim(),
       };
-   localStorage.setItem("Highscores", JSON.stringify(Highscore));
+    highscores.push(score)
+   localStorage.setItem("Highscores", JSON.stringify(highscores));
 }
+
   ans1.addEventListener("click", function() {
     playerchoice = ans1
     nextquestion()
