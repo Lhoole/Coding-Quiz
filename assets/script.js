@@ -4,11 +4,13 @@ var startbutton = document.querySelector("#start")
 var bodyTitle = document.querySelector("#main")
 var bodyQuiz = document.querySelector("#quiz")
 var quizquestion = document.querySelector("#quizQuestion")
+
 var playerchoice = ""
 var ans1 = document.querySelector("#answer1")
 var ans2 = document.querySelector("#answer2")
 var ans3 = document.querySelector("#answer3")
 var ans4 = document.querySelector("#answer4")
+
 var QI = 0
 var timerInterval;
 var playername = ""
@@ -73,7 +75,7 @@ function populatequestions(){
   })
 
 function nextquestion(){
-    if (playerchoice.textContent !== questions[QI].answer) {
+    if (playerchoice != questions[QI].answer) {
         timer = timer - 10;
     }
     QI++
@@ -102,19 +104,12 @@ function savescore(){
    localStorage.setItem("Highscores", JSON.stringify(highscores));
 }
 
-  ans1.addEventListener("click", function() {
-    playerchoice = ans1
+  ans1.addEventListener("click", selectChoice)
+  ans2.addEventListener("click", selectChoice)
+  ans3.addEventListener("click", selectChoice)
+  ans4.addEventListener("click", selectChoice)
+  
+  function selectChoice(event){
+    playerchoice = event.target.textContent
     nextquestion()
-  })
-  ans2.addEventListener("click", function() {
-    playerchoice = ans2
-    nextquestion()
-  })
-  ans3.addEventListener("click", function() {
-    playerchoice = ans3
-    nextquestion()
-  })
-  ans4.addEventListener("click", function() {
-    playerchoice = ans4
-    nextquestion()
-  })
+  }
