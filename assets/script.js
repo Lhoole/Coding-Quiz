@@ -4,11 +4,13 @@ var startbutton = document.querySelector("#start")
 var bodyTitle = document.querySelector("#main")
 var bodyQuiz = document.querySelector("#quiz")
 var quizquestion = document.querySelector("#quizQuestion")
+
 var playerchoice = ""
 var ans1 = document.querySelector("#answer1")
 var ans2 = document.querySelector("#answer2")
 var ans3 = document.querySelector("#answer3")
 var ans4 = document.querySelector("#answer4")
+
 var QI = 0
 var timerInterval;
 var playername = ""
@@ -31,7 +33,32 @@ var questions = [
         choices: ["The framework of the webpage", "The appearance of the webpage", "The display of the webpage",
                 "The logic of the webpage"],
         answer: "The logic of the webpage",
-   }
+   },
+   {
+    title: "Javascript needs what code to recieve input from the user:",
+    choices: ["An \"If\" statement", "An \"event listener\"", "A function",
+            "A variable"],
+    answer: "An \"event listener\"",
+  },
+  {
+    title: "Javascript feature with multiple variables stored within a variable is called:",
+    choices: ["An object", "An array", "String",
+            "A Suitcase"],
+    answer: "An object",
+  },
+  {
+    title: "In Javascript _____ is and example of a loop?",
+    choices: ["If", "Else", "Var",
+            "For"],
+    answer: "For",
+  },
+  {
+    title: "Why would you use a loop?",
+    choices: ["To define a variable", "To read an input", "To get stuck",
+            "To repeat a process"],
+    answer: "To repeat a process",
+  },
+
 ]
 
 function startGame(){
@@ -43,7 +70,7 @@ function startGame(){
 }
 
 function setTimer() {
-    timer = 30;
+    timer = 50;
       timerInterval = setInterval(function() {
       timer--;
       timerEl.textContent = "Time: " + timer;
@@ -73,7 +100,7 @@ function populatequestions(){
   })
 
 function nextquestion(){
-    if (playerchoice.textContent !== questions[QI].answer) {
+    if (playerchoice != questions[QI].answer) {
         timer = timer - 10;
     }
     QI++
@@ -102,19 +129,12 @@ function savescore(){
    localStorage.setItem("Highscores", JSON.stringify(highscores));
 }
 
-  ans1.addEventListener("click", function() {
-    playerchoice = ans1
+  ans1.addEventListener("click", selectChoice)
+  ans2.addEventListener("click", selectChoice)
+  ans3.addEventListener("click", selectChoice)
+  ans4.addEventListener("click", selectChoice)
+  
+  function selectChoice(event){
+    playerchoice = event.target.textContent
     nextquestion()
-  })
-  ans2.addEventListener("click", function() {
-    playerchoice = ans2
-    nextquestion()
-  })
-  ans3.addEventListener("click", function() {
-    playerchoice = ans3
-    nextquestion()
-  })
-  ans4.addEventListener("click", function() {
-    playerchoice = ans4
-    nextquestion()
-  })
+  }
